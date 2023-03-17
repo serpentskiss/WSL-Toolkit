@@ -18,6 +18,7 @@
 # |           - Composer installation for PHP development                                   |
 # |           - WSL metadata mount option (allow CHOWN & CHMOD)                             | 
 # |           Bug Fixes:                                                                    |
+# |           - Fixed typo in drive selection routine                                       |
 # |           - Changed imagick to imagemagick                                              |
 # |           - Added check for existing default web site on chosen drive                   |
 # |           - Added check for existing default PHP test page                              |
@@ -125,7 +126,7 @@ apt-get install -y mariadb-client mariadb-server
 # +-----------------------------------------------------------------------------------------+
 # | CREATE DEFAULT WEB DIRECTORIES                                                          |
 # +-----------------------------------------------------------------------------------------+
-mapfile -t DRIVES < < ( find /mnt -mindepth 1 -maxdepth 1 -regex '\/mnt\/[a-z]' -type d  | cut -d '/' -f 3 | sort )
+mapfile -t DRIVES < <( find /mnt -mindepth 1 -maxdepth 1 -regex '\/mnt\/[a-z]' -type d  | cut -d '/' -f 3 | sort )
 CT=1
 
 for i in "${DRIVES[@]}"
