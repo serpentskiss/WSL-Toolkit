@@ -242,7 +242,6 @@ mysql --user=root <<_EOF_
   DROP USER IF EXISTS '';
   CREATE OR REPLACE USER 'root'@'localhost' IDENTIFIED BY '${MYSQLROOTPWD}';
   DROP DATABASE IF EXISTS test;
-  DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
   FLUSH PRIVILEGES;
 _EOF_
 
