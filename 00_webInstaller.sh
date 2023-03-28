@@ -3,10 +3,10 @@
 # +-----------------------------------------------------------------------------------------+
 # | UBUNTU DEVELOPMENT WEB SERVER UNDER WINDOWS SUBSYSTEM FOR LINUX                         |
 # +-----------------------------------------------------------------------------------------+
-# | Version        : 1.001                                                                  |
+# | Version        : 1.002                                                                  |
 # | Ubuntu Version : 22.0.4 LTS                                                             |
 # | Date           : 26/NOV/2021                                                            |
-# | Updated        : 09/MAR/2023                                                            |
+# | Updated        : 28/MAR/2023                                                            |
 # | Author         : Jon Thompson                                                           |
 # | License        : Public Domain                                                          |
 # +-----------------------------------------------------------------------------------------+
@@ -14,10 +14,14 @@
 # |                                                                                         |
 # | v1.01   : 09/MAR/2023                                                                   |
 # |           Additions:                                                                    |
+# |           - Networking fix added                                                        |
+# |                                                                                         |
+# | v1.01   : 09/MAR/2023                                                                   |
+# |           Additions:                                                                    |
 # |           - drive selection for use as DocumentRoot/web site storage                    |
 # |           - Composer installation for PHP development                                   |
 # |           - WSL metadata mount option (allow CHOWN & CHMOD)                             | 
-# |           - Networking fix added
+# |                                                                                         |
 # |           Bug Fixes:                                                                    |
 # |           - Changed imagick to imagemagick                                              |
 # |           - Added check for existing default web site on chosen drive                   |
