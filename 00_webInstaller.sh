@@ -17,8 +17,8 @@
 # |           - drive selection for use as DocumentRoot/web site storage                    |
 # |           - Composer installation for PHP development                                   |
 # |           - WSL metadata mount option (allow CHOWN & CHMOD)                             | 
+# |           - Networking fix added
 # |           Bug Fixes:                                                                    |
-# |           - Fixed typo in drive selection routine                                       |
 # |           - Changed imagick to imagemagick                                              |
 # |           - Added check for existing default web site on chosen drive                   |
 # |           - Added check for existing default PHP test page                              |
@@ -98,6 +98,24 @@ _EOF_
 
 
 # +-----------------------------------------------------------------------------------------+
+# | NETWORKING FIX                                                                          |
+# | REQUIRES "wsl --shutdown" TO BE ISSUED UNDER A WINDOWS COMMAND PROMPT TO TAKE EFFECT    |
+# +-----------------------------------------------------------------------------------------+
+cat << _EOF_ >> /etc/wsl.conf
+[network]
+generateResolvConf = false
+_EOF_
+
+rm -f /etc/resolv.conf
+cat << _EOF_ >> /etc/resolv.conf
+nameserver 8.8.8.8
+_EOF_
+
+chattr +i /etc/resolv.conf
+
+
+
+# +-----------------------------------------------------------------------------------------+
 # | INSTALL APACHE                                                                          |
 # +-----------------------------------------------------------------------------------------+
 apt-get install -y apache2 
@@ -109,6 +127,12 @@ a2enmod rewrite
 # | INSTALL PHP                                                                             |
 # +-----------------------------------------------------------------------------------------+
 apt-get install -y ${PHPVERSION} ${PHPVERSION}-cli ${PHPVERSION}-common ${PHPVERSION}-curl ${PHPVERSION}-gd ${PHPVERSION}-imagick ${PHPVERSION}-imap ${PHPVERSION}-mailparse ${PHPVERSION}-mbstring ${PHPVERSION}-mcrypt ${PHPVERSION}-mysql ${PHPVERSION}-xdebug ${PHPVERSION}-xml ${PHPVERSION}-zip
+
+
+
+# +-----------------------------------------------------------------------------------------+
+# | INSTALL COMPOSER                                                                        |
+# +-----------------------------------------------------------------------------------------+
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php 
 php -r "unlink('composer-setup.php');"
